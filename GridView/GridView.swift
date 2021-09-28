@@ -410,6 +410,16 @@ extension GridView {
         setNeedsLayout(.reload)
         layoutIfNeeded()
     }
+
+    public func setNeedsRecount() {
+        setNeedsLayout(.none)
+        currentMatrix = makeMatrix(.all(currentMatrix))
+
+        performWithoutDelegation {
+            contentSize = currentMatrix.contentSize
+        }
+        layoutIfNeeded()
+    }
     
     public func invalidateContentSize() {
         setNeedsLayout(.layout(.rotating(currentMatrix)))

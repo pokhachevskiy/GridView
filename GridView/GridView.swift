@@ -475,19 +475,8 @@ extension GridView {
     }
     
     public func scrollToRow(at indexPath: IndexPath, at scrollPosition: GridViewScrollPosition = [], animated: Bool = false) {
-        let currentOffset = validityContentOffset
-        let threshold = currentMatrix.validityContentRect.width / 2
         let rect = currentMatrix.rectForRow(at: indexPath)
-        
-        let absRect: CGRect
-        if currentOffset.x + threshold < rect.minX {
-            absRect = currentMatrix.rectForRow(at: indexPath, threshold: .below)
-        } else if currentOffset.x - threshold >= rect.minX {
-            absRect = currentMatrix.rectForRow(at: indexPath, threshold: .above)
-        } else {
-            absRect = rect
-        }
-        
+        let absRect: CGRect = rect
         let offsetY = scrollVerticallyOffset(at: absRect, at: scrollPosition)
         let offsetX = scrollHorizontallyOffset(at: absRect, at: scrollPosition)
         

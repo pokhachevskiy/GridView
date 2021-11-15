@@ -477,10 +477,8 @@ extension GridView {
     public func scrollToRow(at indexPath: IndexPath, at scrollPosition: GridViewScrollPosition = [], animated: Bool = false) {
         let rect = currentMatrix.rectForRow(at: indexPath)
         let absRect: CGRect = rect
-        let offsetY = scrollVerticallyOffset(at: absRect, at: scrollPosition)
-        let offsetX = scrollHorizontallyOffset(at: absRect, at: scrollPosition)
         
-        let offset = CGPoint(x: absRect.minX + offsetX, y: absRect.minY + offsetY)
+        let offset = CGPoint(x: absRect.minX, y: absRect.minY)
         super.setContentOffset(offset, animated: animated)
     }
     
